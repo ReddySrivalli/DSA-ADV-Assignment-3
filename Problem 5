@@ -1,0 +1,50 @@
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+def bfs(root):
+    if not root:
+        return
+    queue = [root]
+    while queue:
+        node = queue.pop(0)
+        print(node.value, end=' ')
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+
+def dfs_inorder(root):
+    if root:
+        dfs_inorder(root.left)
+        print(root.value, end=' ')
+        dfs_inorder(root.right)
+
+def build_binary_tree():
+    root_value = int(input("Enter the value of the root node: "))
+    root = TreeNode(root_value)
+    nodes = [root]
+
+    while nodes:
+        current = nodes.pop(0)
+        left_value = input(f"Enter the left child value of {current.value} (or type 'None'): ")
+        if left_value.lower() != 'none':
+            current.left = TreeNode(int(left_value))
+            nodes.append(current.left)
+
+        right_value = input(f"Enter the right child value of {current.value} (or type 'None'): ")
+        if right_value.lower() != 'none':
+            current.right = TreeNode(int(right_value))
+            nodes.append(current.right)
+
+    return root
+
+root_node = build_binary_tree()
+
+print("BFS traversal:")
+bfs(root_node)
+
+print("\nDFS (inorder) traversal:")
+dfs_inorder(root_node)
