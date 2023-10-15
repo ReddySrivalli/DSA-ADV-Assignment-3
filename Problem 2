@@ -1,0 +1,32 @@
+class TreeNode:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.val = key
+
+def find_height(tree):
+    if not tree:
+        return -1
+
+    index = 0
+    level = -1
+    while index < len(tree):
+        level_size = 2 ** level
+        index += level_size
+        level += 1
+
+    return level
+
+def build_binary_tree():
+    tree = []
+    n = int(input("Enter the number of elements in the binary tree: "))
+    print("Enter the elements:")
+    for _ in range(n):
+        key = int(input())
+        tree.append(key)
+    return tree
+
+# Example usage:
+binary_tree = build_binary_tree()
+height = find_height(binary_tree)
+print(f"The height of the binary tree is: {height}")
