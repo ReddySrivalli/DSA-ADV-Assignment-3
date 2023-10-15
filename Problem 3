@@ -1,0 +1,42 @@
+class TreeNode:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.val = key
+def preorder_traversal(tree, index):
+    if index < len(tree):
+        print(tree[index], end=" ")
+        preorder_traversal(tree, 2 * index + 1)
+        preorder_traversal(tree, 2 * index + 2)
+
+def inorder_traversal(tree, index):
+    if index < len(tree):
+        inorder_traversal(tree, 2 * index + 1)
+        print(tree[index], end=" ")
+        inorder_traversal(tree, 2 * index + 2)
+
+def postorder_traversal(tree, index):
+    if index < len(tree):
+        postorder_traversal(tree, 2 * index + 1)
+        postorder_traversal(tree, 2 * index + 2)
+        print(tree[index], end=" ")
+
+def build_binary_tree():
+    tree = []
+    n = int(input("Enter the number of elements in the binary tree: "))
+    print("Enter the elements:")
+    for _ in range(n):
+        key = int(input())
+        tree.append(key)
+    return tree
+
+binary_tree = build_binary_tree()
+
+print("\nPre-order Traversal:")
+preorder_traversal(binary_tree, 0)
+
+print("\nIn-order Traversal:")
+inorder_traversal(binary_tree, 0)
+
+print("\nPost-order Traversal:")
+postorder_traversal(binary_tree, 0)
