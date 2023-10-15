@@ -1,0 +1,35 @@
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+def sum_of_left_leaves(root, is_left=False):
+    if not root:
+        return 0
+    if not root.left and not root.right and is_left:
+        return root.value
+    return sum_of_left_leaves(root.left, True) + sum_of_left_leaves(root.right, False)
+
+def build_binary_tree():
+    value = int(input("Enter the value of the root node: "))
+    root = TreeNode(value)
+    nodes = [root]
+
+    while nodes:
+        current = nodes.pop(0)
+        left_value = input(f"Enter the left child value of {current.value} (or type 'None'): ")
+        if left_value.lower() != 'none':
+            current.left = TreeNode(int(left_value))
+            nodes.append(current.left)
+
+        right_value = input(f"Enter the right child value of {current.value} (or type 'None'): ")
+        if right_value.lower() != 'none':
+            current.right = TreeNode(int(right_value))
+            nodes.append(current.right)
+
+    return root
+
+root_node = build_binary_tree()
+result = sum_of_left_leaves(root_node)
+print(f"Sum of left leaves: {result}")
