@@ -1,0 +1,30 @@
+class TreeNode:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.val = key
+
+def print_leaves(tree, index):
+    if index < len(tree):
+        if tree[index] is not None:
+            left_child = 2 * index + 1
+            right_child = 2 * index + 2
+            if left_child >= len(tree) and right_child >= len(tree):
+                print(tree[index], end=" ")
+            else:
+                print_leaves(tree, left_child)
+                print_leaves(tree, right_child)
+
+def build_binary_tree():
+    tree = []
+    n = int(input("Enter the number of elements in the binary tree: "))
+    print("Enter the elements:")
+    for _ in range(n):
+        key = int(input())
+        tree.append(key)
+    return tree
+
+binary_tree = build_binary_tree()
+
+print("\nLeaves of the Binary Tree:")
+print_leaves(binary_tree, 0)
