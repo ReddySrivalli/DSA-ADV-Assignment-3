@@ -1,0 +1,28 @@
+class TreeNode:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.val = key
+
+def insert(root, key):
+    if root is None:
+        return TreeNode(key)
+    else:
+        if root.val < key:
+            root.right = insert(root.right, key)
+        else:
+            root.left = insert(root.left, key)
+    return root
+
+def build_binary_tree():
+    tree = []
+    n = int(input("Enter the number of elements in the binary tree: "))
+    print("Enter the elements:")
+    for _ in range(n):
+        key = int(input())
+        tree.append(key)
+    return tree
+
+binary_tree = build_binary_tree()
+print("\nBinary Tree Elements:")
+print(binary_tree)
